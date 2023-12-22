@@ -26,7 +26,7 @@ public class FileHandler {
             int age = Integer.parseInt(parts[2]);
 
             String level = parts[3];
-            String country = parts[4];
+            String gender = parts[4];
 
             int[] scores = new int[4];
             for (int i = 0; i < 4; i++) {
@@ -34,16 +34,17 @@ public class FileHandler {
             }
 
             // System.out.println(competitorNumber + " " + competitorName + " " + age + " "
-            // + level + " " + country + " "
+            // + level + " " + gender + " "
             // + scores[0] + " " + scores[1] + " " + scores[2] + " " + scores[3]);
 
             String firstName = competitorName.split(" ")[0];
             String lastName = competitorName.split(" ")[1];
 
-            LudoCompetitor competitor = new LudoCompetitor(competitorNumber, new Name(firstName, lastName), country,
+            LudoCompetitor competitor = new LudoCompetitor(competitorNumber, new Name(firstName, lastName), gender,
                     level, age, scores);
 
             competitors.add(competitor);
+
         }
 
         scanner.close();
@@ -54,11 +55,10 @@ public class FileHandler {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             // Writing data in the specified format
             writer.write(competitor.getCompetitorNumber() + ",");
-            writer.write(competitor.getName() + ",");
-            writer.write(competitor.getLastName() + ","); // Assuming you have a getter for last name
+            writer.write(competitor.getCompetitorName() + ",");
             writer.write(competitor.getAge() + ",");
             writer.write(competitor.getGender() + ",");
-            writer.write(competitor.getCountry() + ",");
+            writer.write(competitor.getLevel() + ",");
 
             // Writing the scores
             int[] scores = competitor.getScoreArray(); // Assuming you have a getter for the scores

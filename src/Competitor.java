@@ -1,14 +1,14 @@
 public class Competitor {
     private int competitorNumber;
     private Name competitorName;
-    private String country;
+    private String gender;
     private String level;
     private int age;
 
-    public Competitor(int competitorNumber, Name competitorName, String country, String level, int age) {
+    public Competitor(int competitorNumber, Name competitorName, String gender, String level, int age) {
         this.competitorNumber = competitorNumber;
         this.competitorName = competitorName;
-        this.country = country;
+        this.gender = gender;
         this.level = level;
         this.age = age;
     }
@@ -31,12 +31,12 @@ public class Competitor {
         this.competitorName = competitorName;
     }
 
-    public String getCountry() {
-        return country;
+    public String getGender() {
+        return gender;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getLevel() {
@@ -66,11 +66,15 @@ public class Competitor {
 
     }
 
+    public int[] getScoreArray() {
+        return null;
+    }
+
     public String getFullDetails() {
         StringBuilder details = new StringBuilder();
         details.append("Competitor number ").append(competitorNumber)
                 .append(", name ").append(competitorName.getFullName())
-                .append(", country ").append(country)
+                .append(", gender ").append(gender)
                 .append(".\n").append(competitorName.getFullName()).append(" is a ")
                 .append(level).append(" aged ").append(age);
         return details.toString();

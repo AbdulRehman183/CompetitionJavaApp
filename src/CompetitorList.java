@@ -26,7 +26,7 @@ public class CompetitorList {
             int age = Integer.parseInt(parts[2]);
 
             String level = parts[3];
-            String country = parts[4];
+            String gender = parts[4];
 
             int[] scores = new int[4];
             for (int i = 0; i < 4; i++) {
@@ -34,13 +34,13 @@ public class CompetitorList {
             }
 
             // System.out.println(competitorNumber + " " + competitorName + " " + age + " "
-            // + level + " " + country + " "
+            // + level + " " + gender + " "
             // + scores[0] + " " + scores[1] + " " + scores[2] + " " + scores[3]);
 
             String firstName = competitorName.split(" ")[0];
             String lastName = competitorName.split(" ")[1];
 
-            LudoCompetitor competitor = new LudoCompetitor(competitorNumber, new Name(firstName, lastName), country,
+            LudoCompetitor competitor = new LudoCompetitor(competitorNumber, new Name(firstName, lastName), gender,
                     level, age, scores);
 
             competitors.add(competitor);

@@ -1,9 +1,9 @@
 public class LudoCompetitor extends Competitor {
     private int[] scores;
 
-    public LudoCompetitor(int competitorNumber, Name competitorName, String country, String level, int age,
+    public LudoCompetitor(int competitorNumber, Name competitorName, String gender, String level, int age,
             int[] scores) {
-        super(competitorNumber, competitorName, country, level, age);
+        super(competitorNumber, competitorName, gender, level, age);
         this.scores = scores;
     }
 
@@ -15,6 +15,10 @@ public class LudoCompetitor extends Competitor {
             sum += score;
         }
         return (double) sum / scores.length;
+    }
+
+    public int[] getScoreArray() {
+        return scores;
     }
 
     public String getFullDetails() {
