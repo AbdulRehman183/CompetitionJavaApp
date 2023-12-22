@@ -62,6 +62,10 @@ public class Competitor {
         return 0.0;
     }
 
+    public void setOverallScore(double overallScore) {
+
+    }
+
     public String getFullDetails() {
         StringBuilder details = new StringBuilder();
         details.append("Competitor number ").append(competitorNumber)

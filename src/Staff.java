@@ -2,19 +2,13 @@ import java.util.List;
 
 public class Staff {
     private int staffID;
-    private Name name;
     private String accessLevel;
+    private List<Competiton> competitonsManagedList;
 
-    private List<Competitor> registeredCompetitors;
-    private List<Competiton> registeredCompetitions;
-
-    public Staff(int staffID, Name name, String accessLevel, List<Competitor> registeredCompetitors,
-            List<Competiton> registeredCompetitions) {
+    public Staff(int staffID, String accessLevel, List<Competiton> competitonsManagedList) {
         this.staffID = staffID;
-        this.name = name;
         this.accessLevel = accessLevel;
-        this.registeredCompetitors = registeredCompetitors;
-        this.registeredCompetitions = registeredCompetitions;
+        this.competitonsManagedList = competitonsManagedList;
     }
 
     public int getStaffID() {
@@ -25,36 +19,30 @@ public class Staff {
         this.staffID = staffID;
     }
 
-    public Name getName() {
-        return name;
+    public List<Competiton> getCompetitonsManagedList() {
+        return competitonsManagedList;
     }
 
-    public void setName(Name name) {
-        this.name = name;
+    public void setCompetitonsManagedList(List<Competiton> competitonsManagedList) {
+        this.competitonsManagedList = competitonsManagedList;
     }
 
-    public String getAccessLevel() {
-        return accessLevel;
+    public void recordCompetitorScore(Competitor competitor, Competiton competition, double score) {
+        List<Competitor> registeredCompetitors = competition.getRegisteredCompetitors();
+        for (Competitor c : registeredCompetitors) {
+            if (c.getCompetitorNumber() == competitor.getCompetitorNumber()) {
+                c.setOverallScore(score);
+            }
+        }
+        competition.setRegisteredCompetitors(registeredCompetitors);
     }
 
-    public void setAccessLevel(String accessLevel) {
-        this.accessLevel = accessLevel;
-    }
-
-    public List<Competitor> getRegisteredCompetitors() {
-        return registeredCompetitors;
-    }
-
-    public void setRegisteredCompetitors(List<Competitor> registeredCompetitors) {
-        this.registeredCompetitors = registeredCompetitors;
-    }
-
-    public List<Competiton> getRegisteredCompetitions() {
-        return registeredCompetitions;
-    }
-
-    public void setRegisteredCompetitions(List<Competiton> registeredCompetitions) {
-        this.registeredCompetitions = registeredCompetitions;
+    public Report generateReport(Competiton competition) {
+        Report report = new Report();
+        report.setCompetitionID(competition.getCompetitionID());
+        report.setCompetitionDate(competition.getDate());
+        report.setRegisteredCompetitors(competition.getRegisteredCompetitors());
+        return report;
     }
 
 }
