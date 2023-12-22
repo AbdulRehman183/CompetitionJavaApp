@@ -70,6 +70,10 @@ public class CompetitorList {
         foundCompetitor.ifPresent(competitor -> System.out.println(competitor.getShortDetails()));
     }
 
+    public List<Competitor> getCompetitors() {
+        return competitors;
+    }
+
     public static void main(String[] args) {
         CompetitorList competitorList = new CompetitorList();
         try {
