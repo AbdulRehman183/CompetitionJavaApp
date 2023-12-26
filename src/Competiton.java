@@ -57,4 +57,19 @@ public class Competiton {
         this.date = date;
     }
 
+    // public static void main(String[] args) throws Exception {
+    // FileHandler fileHandler = new FileHandler();
+
+    // List<Competitor> competitors =
+    // fileHandler.readCompetitorsFromFile("resources/RunCompetitor.csv");
+
+    // List<Staff> staff;
+
+    // Competiton competition = new Competiton(1, competitors, null, false, new
+    // Date());
+
+    // System.out.println(competition.getCompetitionID());
+
+    // }
+
 }
