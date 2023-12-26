@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
-import java.util.jar.Attributes.Name;
 import java.util.Date;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,10 +39,10 @@ public class FileHandler {
             String firstName = competitorName.split(" ")[0];
             String lastName = competitorName.split(" ")[1];
 
-            LudoCompetitor competitor = new LudoCompetitor(competitorNumber, new Name(firstName, lastName), gender,
-                    level, age, scores);
+            LudoCompetitor ludocCompetitor = new LudoCompetitor(102, new Name(firstName, lastName), gender, level, age,
+                    scores);
 
-            competitors.add(competitor);
+            competitors.add(ludocCompetitor);
 
         }
 
@@ -52,7 +51,7 @@ public class FileHandler {
     }
 
     public void writeCompetitorToFile(Competitor competitor, String fileName) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
             // Writing data in the specified format
             writer.write(competitor.getCompetitorNumber() + ",");
             writer.write(competitor.getCompetitorName() + ",");
@@ -63,7 +62,10 @@ public class FileHandler {
             // Writing the scores
             int[] scores = competitor.getScoreArray(); // Assuming you have a getter for the scores
             for (int score : scores) {
-                writer.write(score + ",");
+                if (score == scores[scores.length - 1])
+                    writer.write(score + "");
+                else
+                    writer.write(score + ",");
             }
 
             // Move to the next line

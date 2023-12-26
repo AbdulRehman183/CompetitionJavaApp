@@ -23,8 +23,8 @@ public class Competitor {
         this.competitorNumber = competitorNumber;
     }
 
-    public Name getCompetitorName() {
-        return competitorName;
+    public String getCompetitorName() {
+        return competitorName.getFullName();
     }
 
     public void setCompetitorName(Name competitorName) {

@@ -8,8 +8,6 @@ public class LudoCompetitor extends Competitor {
     }
 
     public double getOverallScore() {
-        // Calculate the overall score based on your own decision
-        // For example, let's calculate the average of all scores
         int sum = 0;
         for (int score : scores) {
             sum += score;
