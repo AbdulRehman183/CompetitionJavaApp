@@ -1,11 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
-import java.util.Date;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedWriter;
@@ -39,7 +36,8 @@ public class FileHandler {
             String firstName = competitorName.split(" ")[0];
             String lastName = competitorName.split(" ")[1];
 
-            LudoCompetitor ludocCompetitor = new LudoCompetitor(102, new Name(firstName, lastName), gender, level, age,
+            LudoCompetitor ludocCompetitor = new LudoCompetitor(competitorNumber, new Name(firstName, lastName), gender,
+                    level, age,
                     scores);
 
             competitors.add(ludocCompetitor);

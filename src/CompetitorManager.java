@@ -1,14 +1,21 @@
+import java.util.List;
+
 public class CompetitorManager {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        FileHandler fileHandler = new FileHandler();
 
-        CompetitorModel model = new CompetitorModel(new CompetitorList().getCompetitors());
-        CompetitorView view = new CompetitorView(model);
-        CompetitorController controller = new CompetitorController(model, view);
+        List<Competitor> competitors = fileHandler.readCompetitorsFromFile("resources/RunCompetitor.csv");
 
-        controller.displayCompetitors();
-        controller.editCompetitor();
-        controller.removeCompetitor();
-        controller.writeReportAndClose();
+        CompetitorModel competitorModel = new CompetitorModel(competitors);
+        CompetitorView competitorView = new CompetitorView(competitorModel);
+        CompetitorController competitorController = new CompetitorController(competitorModel, competitorView);
+
+        competitorView.setVisible(true);
+        competitorController.displayCompetitors();
+        competitorController.editCompetitor();
+        competitorController.removeCompetitor();
+        competitorController.writeReportAndClose();
+
     }
 
 }

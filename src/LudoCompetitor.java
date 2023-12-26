@@ -25,6 +25,10 @@ public class LudoCompetitor extends Competitor {
                 + getOverallScore();
     }
 
+    public String getShortDetails() {
+        return super.getShortDetails() + " has an overall score of " + getOverallScore();
+    }
+
     public String toString() {
         return super.toString() + "has an overall score of " + getOverallScore();
     }

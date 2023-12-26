@@ -1,5 +1,3 @@
-
-import java.util.Comparator;
 import java.util.List;
 
 public class CompetitorModel {
@@ -15,14 +13,6 @@ public class CompetitorModel {
 
     public void setCompetitors(List<Competitor> competitors) {
         this.competitors = competitors;
-    }
-
-    public Competitor getCompetitorWithHighestScore() {
-        return competitors.stream().max(Comparator.comparing(Competitor::getOverallScore)).get();
-    }
-
-    public Competitor getCompetitorWithLowestScore() {
-        return competitors.stream().min(Comparator.comparing(Competitor::getOverallScore)).get();
     }
 
 }

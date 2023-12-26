@@ -88,7 +88,7 @@ public class CompetitorView extends JFrame {
     private void displayCompetitors() {
         StringBuilder displayText = new StringBuilder("Competitors:\n");
         for (Competitor competitor : model.getCompetitors()) {
-            displayText.append("Competitor: ").append(competitor).append("\n");
+            displayText.append("Competitor: ").append(competitor.getShortDetails()).append("\n");
         }
         setDisplayText(displayText.toString());
     }
