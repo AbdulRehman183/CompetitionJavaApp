@@ -75,4 +75,65 @@ public class FileHandler {
         }
     }
 
+    // public List<Competiton> readCompetitionsFromFile(String fileName) throws
+    // FileNotFoundException {
+    // List<Competiton> competitions = new ArrayList<>();
+    // File file = new File(fileName);
+    // Scanner scanner = new Scanner(file);
+    // while (scanner.hasNextLine()) {
+    // String line = scanner.nextLine();
+    // String[] parts = line.split(",");
+
+    // int competitionID = Integer.parseInt(parts[0]);
+    // int registeredCompetitors = Integer.parseInt(parts[1]);
+    // int registeredStaff = Integer.parseInt(parts[2]);
+    // boolean scoresRecorded = Boolean.parseBoolean(parts[3]);
+    // String date = parts[4];
+
+    // Competiton competition = new Competiton(competitionID, registeredCompetitors,
+    // registeredStaff,
+    // scoresRecorded, date);
+
+    // competitions.add(competition);
+
+    // }
+
+    // scanner.close();
+    // return competitions;
+    // }
+
+    public void writeCompetitionToFile(Competiton competition, String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            // Writing data in the specified format
+            writer.write(competition.getCompetitionID() + ",");
+            writer.write(competition.getRegisteredCompetitors() + ",");
+            writer.write(competition.getRegisteredStaff() + ",");
+            writer.write(competition.isScoresRecorded() + ",");
+            writer.write(competition.getDate() + "");
+
+            // Move to the next line
+            writer.newLine();
+
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately in your application
+        }
+    }
+
+    public void writeStaffToFile(Staff staff, String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            // Writing data in the specified format
+            writer.write(staff.getStaffID() + ",");
+            writer.write(staff.getAccessLevel() + ",");
+            writer.write(staff.getCompetitonsManagedList() + "");
+
+            // Move to the next line
+            writer.newLine();
+
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately in your application
+        }
+    }
+
 }

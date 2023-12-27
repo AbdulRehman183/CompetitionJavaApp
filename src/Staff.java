@@ -19,6 +19,14 @@ public class Staff {
         this.staffID = staffID;
     }
 
+    public void setAccessLevel(String accessLevel) {
+        this.accessLevel = accessLevel;
+    }
+
+    public String getAccessLevel() {
+        return accessLevel;
+    }
+
     public List<Competiton> getCompetitonsManagedList() {
         return competitonsManagedList;
     }
@@ -43,6 +51,10 @@ public class Staff {
         report.setCompetitionDate(competition.getDate());
         report.setRegisteredCompetitors(competition.getRegisteredCompetitors());
         return report;
+    }
+
+    public String toString() {
+        return "" + staffID;
     }
 
 }

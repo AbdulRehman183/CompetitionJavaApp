@@ -107,6 +107,10 @@ public class Competitor {
         }
     }
 
+    public String toString() {
+        return "" + competitorNumber;
+    }
+
     public static void main(String[] args) {
         LudoCompetitor ludoCompetitor = new LudoCompetitor(1, new Name("John", "Doe"), "UK", "Beginner", 20,
                 new int[] { 1, 2, 3, 4 });

@@ -30,7 +30,7 @@ public class LudoCompetitor extends Competitor {
     }
 
     public String toString() {
-        return super.toString() + "has an overall score of " + getOverallScore();
+        return super.toString();
     }
 
 }

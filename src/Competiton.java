@@ -57,19 +57,26 @@ public class Competiton {
         this.date = date;
     }
 
-    // public static void main(String[] args) throws Exception {
-    // FileHandler fileHandler = new FileHandler();
+    public Competitor getCompetitor(int competitorNumber) {
+        for (Competitor competitor : registeredCompetitors) {
+            if (competitor.getCompetitorNumber() == competitorNumber) {
+                return competitor;
+            }
+        }
+        return null;
+    }
 
-    // List<Competitor> competitors =
-    // fileHandler.readCompetitorsFromFile("resources/RunCompetitor.csv");
+    public Staff getStaff(int staffID) {
+        for (Staff staff : registeredStaff) {
+            if (staff.getStaffID() == staffID) {
+                return staff;
+            }
+        }
+        return null;
+    }
 
-    // List<Staff> staff;
-
-    // Competiton competition = new Competiton(1, competitors, null, false, new
-    // Date());
-
-    // System.out.println(competition.getCompetitionID());
-
-    // }
+    public String toString() {
+        return "" + competitionID;
+    }
 
 }
