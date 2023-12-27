@@ -32,4 +32,9 @@ public class Report {
     public void setRegisteredCompetitors(List<Competitor> registeredCompetitors) {
         this.registeredCompetitors = registeredCompetitors;
     }
+
+    public String toString() {
+        return "Competition ID: " + competitionID + "\nCompetition Date: " + competitionDate
+                + "\nRegistered Competitors: " + registeredCompetitors;
+    }
 }

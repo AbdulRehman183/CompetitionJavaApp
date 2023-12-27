@@ -84,29 +84,6 @@ public class Competitor {
         return "CN " + competitorNumber + " (" + competitorName.getInitials() + ") is a " + level + " aged " + age;
     }
 
-    public String getLevelDescription() {
-        switch (level) {
-            case "Beginner":
-                return "This is a beginner.";
-            case "Intermediate":
-                return "This is an intermediate.";
-            case "Advanced":
-                return "This is an advanced.";
-            default:
-                return "This is an unknown level.";
-        }
-    }
-
-    public String getAgeDescription() {
-        if (age < 18) {
-            return "This is a junior.";
-        } else if (age < 40) {
-            return "This is an adult.";
-        } else {
-            return "This is a senior.";
-        }
-    }
-
     public String toString() {
         return "" + competitorNumber;
     }
