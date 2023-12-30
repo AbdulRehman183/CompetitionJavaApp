@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class MainGUI extends JFrame {
     public MainGUI() {
@@ -77,16 +78,20 @@ public class MainGUI extends JFrame {
         String competitorNumberInput = JOptionPane.showInputDialog(this, "Enter Competitor Number:");
         int competitorNumber = Integer.parseInt(competitorNumberInput);
 
-        Competitor competitor = CompetitorDatabase.searchCompetitorByNumber(competitorNumber); // Implement a method to
-                                                                                               // search competitor by
-                                                                                               // number
+        Competitor competitor = new FileHandler().searchCompetitorFromFile(competitorNumber);
+        try {
+            java.util.List<Competitor> competitors = new FileHandler().readCompetitorsFromFile();
+            Competiton competition = new Competiton(1, competitors, null, false, new Date());
+            if (competitor != null) {
+                // Display Competitor GUI with competitor details
+                CompetitorGUI competitorGUI = new CompetitorGUI(competitor, competition);
+                competitorGUI.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Competitor not found. Please check the number.");
+            }
 
-        if (competitor != null) {
-            // Display Competitor GUI with competitor details
-            CompetitorGUI competitorGUI = new CompetitorGUI(competitor);
-            competitorGUI.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Competitor not found. Please check the number.");
+        } catch (Exception e) {
+
         }
 
     }

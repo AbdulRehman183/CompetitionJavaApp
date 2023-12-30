@@ -9,9 +9,9 @@ import java.io.BufferedWriter;
 
 public class FileHandler {
 
-    public List<Competitor> readCompetitorsFromFile(String fileName) throws FileNotFoundException {
+    public List<Competitor> readCompetitorsFromFile() throws FileNotFoundException {
         List<Competitor> competitors = new ArrayList<>();
-        File file = new File(fileName);
+        File file = new File("resources/competitors.csv");
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
