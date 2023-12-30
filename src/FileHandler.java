@@ -137,6 +137,22 @@ public class FileHandler {
         }
     }
 
+    public void writeOfficialToFile(Official official, String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            // Writing data in the specified format
+            writer.write(official.getOfficialID() + ",");
+            writer.write(official.getRole() + ",");
+            writer.write(official.getManagedCompetitions() + "");
+
+            // Move to the next line
+            writer.newLine();
+
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately in your application
+        }
+    }
+
     public LudoCompetitor searchCompetitorFromFile(int competitorNumber) {
         String fileName = "resources/competitors.csv"; // Replace with your actual file name
 
@@ -174,6 +190,56 @@ public class FileHandler {
         return null; // Competitor not found
     }
 
+    public Staff searchStaffFromFile(int staffID) {
+        String fileName = "resources/staff.csv"; // Replace with your actual file name
+
+        try (Scanner scanner = new Scanner(new File(fileName))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+
+                int currentStaffID = Integer.parseInt(parts[0]);
+
+                if (currentStaffID == staffID) {
+                    String accessLevel = parts[1];
+                    String competitonsManagedList = parts[2];
+
+                    return new Staff(staffID, accessLevel, null);
+
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace(); // Handle the exception appropriately in your application
+        }
+
+        return null; // Competitor not found
+    }
+
+    public Official searchOfficialFromFile(int officialID) {
+        String fileName = "resources/officials.csv"; // Replace with your actual file name
+
+        try (Scanner scanner = new Scanner(new File(fileName))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+
+                int currentOfficialID = Integer.parseInt(parts[0]);
+
+                if (currentOfficialID == officialID) {
+                    String role = parts[1];
+                    String managedCompetitions = parts[2];
+
+                    return new Official(officialID, role, null);
+
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace(); // Handle the exception appropriately in your application
+        }
+
+        return null; // Competitor not found
+    }
+
     public List<String> readCompetitionsFromFile() {
 
         List<String> competitions = new ArrayList<>();
@@ -200,7 +266,7 @@ public class FileHandler {
 
         LudoCompetitor competitor = fileHandler.searchCompetitorFromFile(5);
 
-        List<Competitor> competitors = fileHandler.readCompetitorsFromFile("resources/competitors.csv");
+        List<Competitor> competitors = fileHandler.readCompetitorsFromFile();
 
         // System.out.println("Competitors read from file:");
 

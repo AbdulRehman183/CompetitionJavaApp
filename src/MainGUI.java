@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import java.util.List;
 
 public class MainGUI extends JFrame {
     public MainGUI() {
@@ -63,15 +64,23 @@ public class MainGUI extends JFrame {
         String staffIDInput = JOptionPane.showInputDialog(this, "Enter Staff ID:");
         int staffID = Integer.parseInt(staffIDInput);
 
-        Staff staff = StaffDatabase.searchStaffByID(staffID); // Implement a method to search staff by ID
+        Staff staff = new FileHandler().searchStaffFromFile(staffID); // Implement a method to search staff by ID
 
-        if (staff != null) {
-            // Display Staff GUI with staff details
-            StaffGUI staffGUI = new StaffGUI(staff);
-            staffGUI.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Staff not found. Please check the ID.");
+        try {
+            List<Competitor> competitors = new FileHandler().readCompetitorsFromFile();
+
+            if (staff != null) {
+                // Display Staff GUI with staff details
+                StaffGUI staffGUI = new StaffGUI(staff, competitors);
+                staffGUI.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Staff not found. Please check the ID.");
+            }
+
+        } catch (Exception e) {
+
         }
+
     }
 
     private void openCompetitorInterface() {
@@ -100,32 +109,37 @@ public class MainGUI extends JFrame {
         String officialIDInput = JOptionPane.showInputDialog(this, "Enter Official ID:");
         int officialID = Integer.parseInt(officialIDInput);
 
-        Official official = OfficialDatabase.searchOfficialByID(officialID); // Implement a method to search official by
-                                                                             // ID
-
+        Official official = new FileHandler().searchOfficialFromFile(officialID); // Implement a method to search
+                                                                                  // official
+        // ID
         if (official != null) {
-            // Display Official GUI with official details
             OfficialGUI officialGUI = new OfficialGUI(official);
-            officialGUI.setVisible(true);
+            officialGUI.showGUI();
         } else {
             JOptionPane.showMessageDialog(this, "Official not found. Please check the ID.");
         }
     }
 
     private void openAudienceInterface() {
-        String audienceIDInput = JOptionPane.showInputDialog(this, "Enter Audience ID:");
-        int audienceID = Integer.parseInt(audienceIDInput);
+        // String audienceIDInput = JOptionPane.showInputDialog(this, "Enter Audience
+        // ID:");
+        // int audienceID = Integer.parseInt(audienceIDInput);
 
-        Audience audience = AudienceDatabase.searchAudienceByID(audienceID); // Implement a method to search audience by
-                                                                             // ID
+        // Audience audience = AudienceDatabase.searchAudienceByID(audienceID); //
+        // Implement a method to search audience by
+        // // ID
 
-        if (audience != null) {
-            // Display Audience GUI with audience details
-            AudienceGUI audienceGUI = new AudienceGUI(audience);
-            audienceGUI.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Audience not found. Please check the ID.");
-        }
+        // if (audience != null) {
+        // // Display Audience GUI with audience details
+        // AudienceGUI audienceGUI = new AudienceGUI(audience);
+        // audienceGUI.setVisible(true);
+        // } else {
+        // JOptionPane.showMessageDialog(this, "Audience not found. Please check the
+        // ID.");
+        // }
+
+        AudienceGUI audienceGUI = new AudienceGUI();
+        audienceGUI.showGUI();
     }
 
     public static void main(String[] args) {

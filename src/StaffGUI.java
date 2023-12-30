@@ -100,7 +100,7 @@ public class StaffGUI extends JFrame {
             public void run() {
                 try {
                     List<Competitor> competitors = new FileHandler()
-                            .readCompetitorsFromFile("resources/competitors.csv");
+                            .readCompetitorsFromFile();
                     Staff staff = new Staff(1, "Admin", null);
                     StaffGUI staffGUI = new StaffGUI(staff, competitors);
                     staffGUI.setVisible(true);
