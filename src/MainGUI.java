@@ -59,31 +59,68 @@ public class MainGUI extends JFrame {
     }
 
     private void openStaffInterface() {
-        // Take input for Staff details
-        String staffIDString = JOptionPane.showInputDialog("Enter Staff ID:");
-        String accessLevel = JOptionPane.showInputDialog("Enter Access Level:");
+        String staffIDInput = JOptionPane.showInputDialog(this, "Enter Staff ID:");
+        int staffID = Integer.parseInt(staffIDInput);
 
-        // Convert input strings to appropriate types
-        int staffID = Integer.parseInt(staffIDString);
+        Staff staff = StaffDatabase.searchStaffByID(staffID); // Implement a method to search staff by ID
 
-        // Create Staff instance
-        Staff staff = new Staff(staffID, accessLevel, null);
-
-        // Create and display Staff GUI
-        StaffGUI staffGUI = new StaffGUI(staff);
-        staffGUI.setVisible(true);
+        if (staff != null) {
+            // Display Staff GUI with staff details
+            StaffGUI staffGUI = new StaffGUI(staff);
+            staffGUI.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Staff not found. Please check the ID.");
+        }
     }
 
     private void openCompetitorInterface() {
-        // Similar methods for other interfaces
+        String competitorNumberInput = JOptionPane.showInputDialog(this, "Enter Competitor Number:");
+        int competitorNumber = Integer.parseInt(competitorNumberInput);
+
+        Competitor competitor = CompetitorDatabase.searchCompetitorByNumber(competitorNumber); // Implement a method to
+                                                                                               // search competitor by
+                                                                                               // number
+
+        if (competitor != null) {
+            // Display Competitor GUI with competitor details
+            CompetitorGUI competitorGUI = new CompetitorGUI(competitor);
+            competitorGUI.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Competitor not found. Please check the number.");
+        }
+
     }
 
     private void openOfficialInterface() {
-        // Similar methods for other interfaces
+        String officialIDInput = JOptionPane.showInputDialog(this, "Enter Official ID:");
+        int officialID = Integer.parseInt(officialIDInput);
+
+        Official official = OfficialDatabase.searchOfficialByID(officialID); // Implement a method to search official by
+                                                                             // ID
+
+        if (official != null) {
+            // Display Official GUI with official details
+            OfficialGUI officialGUI = new OfficialGUI(official);
+            officialGUI.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Official not found. Please check the ID.");
+        }
     }
 
     private void openAudienceInterface() {
-        // Similar methods for other interfaces
+        String audienceIDInput = JOptionPane.showInputDialog(this, "Enter Audience ID:");
+        int audienceID = Integer.parseInt(audienceIDInput);
+
+        Audience audience = AudienceDatabase.searchAudienceByID(audienceID); // Implement a method to search audience by
+                                                                             // ID
+
+        if (audience != null) {
+            // Display Audience GUI with audience details
+            AudienceGUI audienceGUI = new AudienceGUI(audience);
+            audienceGUI.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Audience not found. Please check the ID.");
+        }
     }
 
     public static void main(String[] args) {

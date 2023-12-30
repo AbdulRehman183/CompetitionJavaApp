@@ -54,7 +54,7 @@ public class Staff {
     }
 
     public String toString() {
-        return "" + staffID;
+        return "" + staffID + "," + accessLevel + "," + competitonsManagedList + "";
     }
 
 }

@@ -12,8 +12,10 @@ public class Manager {
                 LudoCompetitor ludoCompetitor2 = new LudoCompetitor(2, new Name("Jane", "Doe"), "UK", "Beginner", 20,
                                 new int[] { 1, 2, 3, 4 });
 
-                fileHandler.writeCompetitorToFile(ludoCompetitor, "resources/competitors.csv");
-                fileHandler.writeCompetitorToFile(ludoCompetitor2, "resources/competitors.csv");
+                // fileHandler.writeCompetitorToFile(ludoCompetitor,
+                // "resources/competitors.csv");
+                // fileHandler.writeCompetitorToFile(ludoCompetitor2,
+                // "resources/competitors.csv");
 
                 System.out.println("Competitors read from file:");
 
@@ -27,7 +29,7 @@ public class Manager {
 
                 staff.recordCompetitorScore(ludoCompetitor, competiton, 10.0);
 
-                fileHandler.writeStaffToFile(staff, "resources/staff.csv");
+                // fileHandler.writeStaffToFile(staff, "resources/staff.csv");
 
                 fileHandler.writeCompetitionToFile(competiton, "resources/competitions.csv");
 

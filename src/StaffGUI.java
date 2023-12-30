@@ -2,12 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class StaffGUI extends JFrame {
     private Staff staff; // Staff instance associated with this GUI
+    private List<Competitor> competitors;
+    private FileHandler fileHandler = new FileHandler();
 
-    public StaffGUI(Staff staff) {
+    public StaffGUI(Staff staff, List<Competitor> competitors) {
         this.staff = staff;
+        this.competitors = competitors;
         initComponents();
     }
 
@@ -56,15 +60,23 @@ public class StaffGUI extends JFrame {
         // You may create a new JFrame or use JOptionPane for input
         // Example:
         String competitorNumber = JOptionPane.showInputDialog("Enter Competitor Number:");
-        String competitionID = JOptionPane.showInputDialog("Enter Competition ID:");
         String score = JOptionPane.showInputDialog("Enter Score:");
 
         // Convert input strings to appropriate types and perform the recording logic
         int competitorNumberInt = Integer.parseInt(competitorNumber);
-        int competitionIDInt = Integer.parseInt(competitionID);
+
+        Competitor competitor = fileHandler.searchCompetitorFromFile(competitorNumberInt);
+
+        if (competitor == null) {
+            JOptionPane.showMessageDialog(this, "Competitor not found", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Competiton competiton = new Competiton(1, competitors, null, false, null);
+
         int scoreInt = Integer.parseInt(score);
 
-        // staff.recordCompetitorScore(competitorNumberInt, competitionIDInt, scoreInt);
+        staff.recordCompetitorScore(competitor, competiton, scoreInt);
 
         // Display success or error message
         JOptionPane.showMessageDialog(this, "Score Recorded Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -77,6 +89,7 @@ public class StaffGUI extends JFrame {
         Report report = staff.generateReport(new Competiton(1, null, null, false, null));
 
         // Display the generated report
+        JOptionPane.showMessageDialog(this, report, "Report", JOptionPane.INFORMATION_MESSAGE);
 
         // You can customize the report display based on your requirements
     }
@@ -85,10 +98,17 @@ public class StaffGUI extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                // Example usage:
-                Staff staff = new Staff(1, "Admin", null);
-                StaffGUI staffGUI = new StaffGUI(staff);
-                staffGUI.setVisible(true);
+                try {
+                    List<Competitor> competitors = new FileHandler()
+                            .readCompetitorsFromFile("resources/competitors.csv");
+                    Staff staff = new Staff(1, "Admin", null);
+                    StaffGUI staffGUI = new StaffGUI(staff, competitors);
+                    staffGUI.setVisible(true);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         });
     }

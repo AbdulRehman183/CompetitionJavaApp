@@ -85,7 +85,7 @@ public class Competitor {
     }
 
     public String toString() {
-        return "" + competitorNumber;
+        return getShortDetails();
     }
 
     public static void main(String[] args) {
