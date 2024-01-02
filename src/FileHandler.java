@@ -153,6 +153,22 @@ public class FileHandler {
         }
     }
 
+    public void writeAudienceToFile(Audience audience, String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            // Writing data in the specified format
+            writer.write(audience.getAudienceID() + ",");
+            writer.write(audience.getAudienceName() + ",");
+            writer.write(audience.getRegisteredCompetitions() + "");
+
+            // Move to the next line
+            writer.newLine();
+
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately in your application
+        }
+    }
+
     public LudoCompetitor searchCompetitorFromFile(int competitorNumber) {
         String fileName = "resources/competitors.csv"; // Replace with your actual file name
 
@@ -238,6 +254,33 @@ public class FileHandler {
         }
 
         return null; // Competitor not found
+    }
+
+    public Audience searchAudienceFromFile(String audienceID) {
+        String fileName = "resources/audience.csv"; // Replace with your actual file name
+
+        try (Scanner scanner = new Scanner(new File(fileName))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+
+                int currentAudienceID = Integer.parseInt(parts[0]);
+
+                int audienceIDint = Integer.parseInt(audienceID);
+
+                if (currentAudienceID == audienceIDint) {
+                    String audienceName = parts[1];
+                    String registeredCompetitions = parts[2];
+
+                    return new Audience(audienceID, audienceName, null);
+
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace(); // Handle the exception appropriately in your application
+        }
+
+        return null; // Audience not found
     }
 
     public List<String> readCompetitionsFromFile() {

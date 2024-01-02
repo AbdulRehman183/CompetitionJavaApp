@@ -121,25 +121,19 @@ public class MainGUI extends JFrame {
     }
 
     private void openAudienceInterface() {
-        // String audienceIDInput = JOptionPane.showInputDialog(this, "Enter Audience
-        // ID:");
-        // int audienceID = Integer.parseInt(audienceIDInput);
+        String audienceIDInput = JOptionPane.showInputDialog(this, "Enter Audience ID:");
 
-        // Audience audience = AudienceDatabase.searchAudienceByID(audienceID); //
-        // Implement a method to search audience by
-        // // ID
+        Audience audience = new FileHandler().searchAudienceFromFile(audienceIDInput); // Implement a method to search
+                                                                                       // audience
 
-        // if (audience != null) {
-        // // Display Audience GUI with audience details
-        // AudienceGUI audienceGUI = new AudienceGUI(audience);
-        // audienceGUI.setVisible(true);
-        // } else {
-        // JOptionPane.showMessageDialog(this, "Audience not found. Please check the
-        // ID.");
-        // }
+        if (audience != null) {
+            // Display Audience GUI with audience details
+            AudienceGUI audienceGUI = new AudienceGUI();
+            audienceGUI.showGUI();
+        } else {
+            JOptionPane.showMessageDialog(this, "Audience not found. Please check the ID.");
+        }
 
-        AudienceGUI audienceGUI = new AudienceGUI();
-        audienceGUI.showGUI();
     }
 
     public static void main(String[] args) {

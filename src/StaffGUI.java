@@ -24,6 +24,7 @@ public class StaffGUI extends JFrame {
         JPanel panel = new JPanel(new GridLayout(3, 1));
 
         JButton registerCompetitorButton = new JButton("Register Competitor");
+        JButton registerAudienceButton = new JButton("Register Audience");
         JButton recordScoreButton = new JButton("Record Competitor Score");
         JButton generateReportButton = new JButton("Generate Report");
         JButton closeButton = new JButton("Close");
@@ -32,6 +33,13 @@ public class StaffGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 openRegisterCompetitor();
+            }
+        });
+
+        registerAudienceButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openRegisterAudience();
             }
         });
 
@@ -57,6 +65,7 @@ public class StaffGUI extends JFrame {
         });
 
         panel.add(registerCompetitorButton);
+        panel.add(registerAudienceButton);
         panel.add(recordScoreButton);
         panel.add(generateReportButton);
         panel.add(closeButton);
@@ -230,6 +239,18 @@ public class StaffGUI extends JFrame {
         JOptionPane.showMessageDialog(this, "Competitor Registered Successfully", "Success",
                 JOptionPane.INFORMATION_MESSAGE);
 
+    }
+
+    private void openRegisterAudience() {
+        String audienceNumberInput = JOptionPane.showInputDialog(this, "Enter Audience Number:");
+        String audienceName = JOptionPane.showInputDialog(this, "Enter Audience Name:");
+
+        Audience audience = new Audience(audienceNumberInput, audienceName, null);
+
+        fileHandler.writeAudienceToFile(audience, "resources/audience.csv");
+
+        JOptionPane.showMessageDialog(this, "Audience Registered Successfully", "Success",
+                JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void openGenerateReportDialog() {
